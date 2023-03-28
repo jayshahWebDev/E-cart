@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../../utils/constant";
+import { addItem } from "../../utils/cartSlice";
 
 const SingleProduct = () => {
   const { id } = useParams();
   const [productDetail, setProductDetail] = useState(null);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cartItem = useSelector((store) => store.cart.cartItems);
   const addTocart = cartItem.findIndex((item) => item.id == id) > -1;
 
@@ -48,7 +50,13 @@ const SingleProduct = () => {
         <div className="flex justify-between items-center laptop:flex-col laptop:items-start laptop:gap-y-[10px]">
           <p className="font-medium">₹{productDetail?.price}</p>
           {addTocart ? (
-            <button className="bg-green-500 font-medium px-[8px] py-[4px] rounded-lg">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/cart");
+              }}
+              className="bg-green-500 font-medium px-[8px] py-[4px] rounded-lg"
+            >
               Go to cart
             </button>
           ) : (
