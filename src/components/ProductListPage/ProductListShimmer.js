@@ -1,8 +1,11 @@
 const ProductListShimmer = () => {
   return (
     <div>
-      <div className="border flex justify-center">
-        <input className="border rounded-lg py-[5px] px-[5px]" />
+      <div className="flex justify-center mt-[25px]">
+        <input
+          className="border rounded-lg py-[5px] px-[5px] outline-none w-[300px]"
+          placeholder="Search By Name"
+        />
       </div>
       <div className="flex flex-col gap-y-[20px] tablet:flex-row tablet:flex-wrap tablet:justify-center tablet:gap-y-[30px]">
         {Array(20)
